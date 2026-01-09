@@ -1,6 +1,6 @@
 # COSMIC Application template
 
-An example of an application for COSMIC DE based on the [cosmic-app-template]: https://github.com/pop-os/cosmic-app-template.
+An example of an application for COSMIC DE based on the [cosmic-app-template](https://github.com/pop-os/cosmic-app-template).
 
 ## Screenshots
 
