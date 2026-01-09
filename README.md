@@ -1,6 +1,12 @@
-# Counter
+# COSMIC Application template
 
-Counter app for COSMIC DE
+An extended version of the application template created for COSMIC DE.
+
+## Screenshots
+
+![screenshot1.png](/screenshot1.png)
+![screenshot2.png](/screenshot2.png)
+![screenshot3.png](/screenshot3.png)
 
 ## Installation
 
