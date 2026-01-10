@@ -148,9 +148,9 @@ impl cosmic::Application for AppModel {
             password: String::new(),
             secret_number: rand::thread_rng().gen_range(1..=100),
             number: String::new(),
-            feedback: "Загадано число от 1 до 100. Угадай его!".to_string(),
+            feedback: "A number from 1 to 100 is hidden. Guess it!".to_string(),
             attempts_counter: 0,
-            attempts: "Количество попыток: 0".to_string(),
+            attempts: "Number of attempts: 0".to_string(),
         };
 
         // Create a startup command that sets the window title.
@@ -286,11 +286,11 @@ impl cosmic::Application for AppModel {
                     .align_y(Alignment::End)
                     .spacing(space_s);
 
-                 let number_text_input = widget::text_input("Введите ваше число", self.number.clone())
+                 let number_text_input = widget::text_input("Enter your number", self.number.clone())
                     .on_input(Message::InputNumber)
                     .on_clear(Message::ClearNumber);
 
-                 let check_button = widget::button::text("Проверить число").on_press(Message::CheckNumber);
+                 let check_button = widget::button::text("Check the number").on_press(Message::CheckNumber);
 
                  let row_number = widget::row::with_capacity(2)
                     .push(number_text_input)
@@ -300,7 +300,7 @@ impl cosmic::Application for AppModel {
 
                  let feedback_text = widget::text::title3(self.feedback.clone());
                  let attempts_text = widget::text::title3(self.attempts.clone());
-                 let new_game_button = widget::button::text("Начать новую игру").on_press(Message::NewGame);
+                 let new_game_button = widget::button::text("Start a new game").on_press(Message::NewGame);
 
                  widget::column::with_capacity(1)
                     .push(header)
@@ -404,24 +404,24 @@ impl cosmic::Application for AppModel {
                 match self.number.parse::<i64>() {
                     Ok(num) => {
                         if num == self.secret_number {
-                            self.feedback = format!("✅ Правильно! Это число {}", self.secret_number);
+                            self.feedback = format!("✅ Right! This is the number {}", self.secret_number);
                         } else if num < self.secret_number {
-                            self.feedback = "⏫ Мое число больше!".to_string();
+                            self.feedback = "⏫ My number is higher!".to_string();
                         } else {
-                            self.feedback = "⏬ Мое число меньше!".to_string();
+                            self.feedback = "⏬ My number is less!".to_string();
                         }
                         self.attempts_counter += 1;
-                        self.attempts = format!("Количество попыток: {}", self.attempts_counter);
+                        self.attempts = format!("Number of attempts: {}", self.attempts_counter);
                     }
-                    Err(_) => self.feedback = "❌ Введи число!".to_string(),
+                    Err(_) => self.feedback = "❌ Enter a number!".to_string(),
                 }
             }
             Message::NewGame => {
                 self.secret_number = rand::thread_rng().gen_range(1..=100);
                 self.number.clear();
                 self.attempts_counter = 0;
-                self.feedback = "Новое число загадано. Угадай его!".to_string();
-                self.attempts = "Количество попыток: 0".to_string();
+                self.feedback = "A new number has been guessed. Guess it!".to_string();
+                self.attempts = "Number of attempts: 0".to_string();
             }
             Message::WatchTick(time) => {
                 self.time = time;
